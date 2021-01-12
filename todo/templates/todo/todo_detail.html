@@ -1,0 +1,11 @@
+{% extends 'todo/base.html' %}
+
+{% block content %}
+    <div class="post">
+        <div class="date">
+            {{ todo.updated_date }}
+        </div>
+        <h2>{{ todo.title }}</h2>
+        <p>{{ todo.text|linebreaksbr }}</p>
+    </div>
+{% endblock %}

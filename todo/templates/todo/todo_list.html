@@ -1,18 +1,14 @@
-<html>
-    <head>
-        <title>Django Girls blog</title>
-    </head>
-    <body>
-        <div>
-            <h1><a href="/">Django Girls Blog</a></h1>
-        </div>
-        
-        {% for todo in todos %}
-            <div>
+{% extends 'todo/base.html' %}
+
+{% block content %}
+    {% for todo in todos %}
+        <div class="post">
+            <div class="date">
                 <p>published: {{ todo.updated_date }}</p>
-                <h2><a href="">{{ todo.title }}</a></h2>
-                <p>{{ todo.text|linebreaksbr }}</p>
             </div>
-        {% endfor %}
-    </body>
-</html>
+            <h2><a href="{% url 'todo_detail' pk=todo.pk %}">{{ todo.title }}</a></h2>
+            <p>{{ todo.text|linebreaksbr }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}
+                
