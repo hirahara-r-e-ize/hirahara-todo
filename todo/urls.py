@@ -5,4 +5,5 @@ urlpatterns = [
     path('<int:pk>/', views.todo_detail, name='todo_detail'),
     path('add/', views.todo_add, name='todo_add'),
     path('<int:pk>/edit/', views.todo_edit, name='todo_edit'),
+    path('logout/complete/', views.logout_complete, name='logout_complete'),
 ]

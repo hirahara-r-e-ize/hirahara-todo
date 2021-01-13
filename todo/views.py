@@ -39,3 +39,6 @@ def todo_edit(request, pk):
     else:
         form = TodoForm(instance=post)
     return render(request, 'todo/todo_edit.html', {'form': form})
+
+def logout_complete(request):
+    return render(request, 'todo/logout_complete.html', {})
