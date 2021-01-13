@@ -8,6 +8,7 @@
             </div>
             <h2><a href="{% url 'todo_detail' pk=todo.pk %}">{{ todo.title }}</a></h2>
             <p>{{ todo.text|linebreaksbr }}</p>
+            <p>更新者：{{ todo.author }}</p>
         </div>
     {% endfor %}
 {% endblock %}
