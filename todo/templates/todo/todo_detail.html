@@ -1,14 +1,16 @@
 {% extends 'todo/base.html' %}
 
 {% block content %}
-    <div class="post">
-        <div class="date">
-            {{ todo.updated_date }}
+    <h3>タイトル</h3>
+    <div class="detail">    
+    <p>{{ todo.title }}</p></div>
+    <h3>内容</h3>
+    <div class="detail">
+        <p>{{ todo.text|linebreaksbr }}</p></div>
+        <p>更新日時：{{ todo.updated_date }}   更新者：{{ todo.author }}</p>
+    {% if user.is_authenticated %}
+        <div class="submit">    
+            <button onclick="location.href='{% url 'todo_edit' pk=todo.pk %}'">編集</button>
         </div>
-        {% if user.is_authenticated %}
-            <a class="btn btn-default" href="{% url 'todo_edit' pk=todo.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
-        {% endif %}
-        <h2>{{ todo.title }}</h2>
-        <p>{{ todo.text|linebreaksbr }}</p>
-    </div>
+    {% endif %}
 {% endblock %}

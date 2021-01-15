@@ -1,7 +1,7 @@
 {% extends 'todo/base.html' %}
 
 {% block content %}
-    <h2>編集</h2>
+    <h2>新規登録</h2>
     <form method="POST" class="post-form">{% csrf_token %}
         {{ form.as_p }}
         <div class="submit">

@@ -6,7 +6,7 @@ from django.shortcuts import redirect
 
 # Create your views here.
 def todo_list(request):
-    todos = Todo.objects.filter(updated_date__lte=timezone.now()).order_by('updated_date')
+    todos = Todo.objects.filter(updated_date__lte=timezone.now())
     return render(request, 'todo/todo_list.html', {'todos': todos})
 
 def todo_detail(request, pk):
@@ -24,7 +24,7 @@ def todo_add(request):
             return redirect('todo_detail', pk=post.pk)
     else:
         form = TodoForm()
-    return render(request, 'todo/todo_edit.html', {'form': form})
+    return render(request, 'todo/todo_add.html', {'form': form})
 
 def todo_edit(request, pk):
     post = get_object_or_404(Todo, pk=pk)

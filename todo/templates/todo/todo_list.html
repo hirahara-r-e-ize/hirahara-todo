@@ -1,15 +1,34 @@
 {% extends 'todo/base.html' %}
 
 {% block content %}
+<h2>Todo一覧</h2>
+{% if user.is_authenticated %}
+    <button onclick="location.href='{% url 'todo_add' %}'" class="todo-add">新規作成</button>
+{% endif %}
+
+<table>
+    <tr>
+        <th>id</th>
+        <th>タイトル</th>
+        <th>更新日時</th>
+        <th>更新者</th>
+        {% if user.is_authenticated %}
+            <th></th>
+        {% endif %}
+    </tr>
     {% for todo in todos %}
-        <div class="post">
-            <div class="date">
-                <p>published: {{ todo.updated_date }}</p>
-            </div>
-            <h2><a href="{% url 'todo_detail' pk=todo.pk %}">{{ todo.title }}</a></h2>
-            <p>{{ todo.text|linebreaksbr }}</p>
-            <p>更新者：{{ todo.author }}</p>
-        </div>
+    <tr>
+        <td>{{ todo.pk }}</td>
+        <td><a href="{% url 'todo_detail' pk=todo.pk %}">{{ todo.title }}</a></td>
+        <td>{{ todo.updated_date }}</td>
+        <td>{{ todo.author }}</td>
+        {% if user.is_authenticated %}
+            <td>
+                <button onclick="location.href='{% url 'todo_edit' pk=todo.pk %}'">編集</button>
+            </td>
+        {% endif %}
+    </tr>
     {% endfor %}
+</table>
 {% endblock %}
                 

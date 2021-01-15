@@ -1,7 +1,7 @@
 {% load static %}
 <html>
     <head>
-        <title>Django Girls blog</title>
+        <title>Todo管理</title>
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="{% static 'css/todo.css' %}">
@@ -9,12 +9,11 @@
     <body>
         <div class="page-header">
             {% if user.is_authenticated %}
-                <a href="{% url 'todo_add' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
-                <p class="top-menu">Hello {{ user.username }} <small>(<a href="{% url 'logout' %}">Log out</a>)</small></p>
+                <p>こんにちは {{ user.username }} さん<small>(<a href="{% url 'logout' %}">ログアウト</a>)</small></p>
             {% else %}
-                <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
+                <p><a href="{% url 'login' %}">ログイン</a></p>
             {% endif %}
-            <h1><a href="/">Django Girls Blog</a></h1>
+            <h3><a href="/">Todo管理</a></h3>
         </div>
         <div class="content container">
             <div class="row">
