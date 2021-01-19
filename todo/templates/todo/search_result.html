@@ -1,14 +1,7 @@
 {% extends 'todo/base.html' %}
 
 {% block content %}
-<h2>Todo一覧</h2>
-{% if user.is_authenticated %}
-    <button onclick="location.href='{% url 'todo_add' %}'" class="todo-add">新規作成</button>
-{% endif %}
-<form method="GET" action="{% url 'search_result' %}">
-    <input type="text" name="keyword">
-    <button type="submit">検索</button>
-</form>
+<h2>検索結果一覧</h2>
 <table>
     <tr>
         <th>id</th>
@@ -17,14 +10,10 @@
         <th>更新者</th>
         {% if user.is_authenticated %}
             <th></th>
-            <th></th>
-        {% endif %}
-        {% if user.is_superuser %}
-            <th></th>
+            <th>ステータス</th>
         {% endif %}
     </tr>
     {% for todo in todos %}
-    {%if todo.complete == True %}
     <tr>
         <td>{{ todo.pk }}</td>
         <td><a href="{% url 'todo_detail' pk=todo.pk %}">{{ todo.title }}</a></td>
@@ -35,16 +24,14 @@
                 <button onclick="location.href='{% url 'todo_edit' pk=todo.pk %}'">編集</button>
             </td>
             <td>
+                {% if todo.complete == True %}
                 <button onclick="location.href='{% url 'todo_complete' pk=todo.pk %}'">完了</button>
-            </td>
-        {% endif %}
-        {% if user.is_superuser %}
-            <td>
-                <button onclick="location.href='{% url 'todo_delete' pk=todo.pk %}'">削除</button>
+                {% else %}
+                完了済み
+                {% endif %}
             </td>
         {% endif %}
     </tr>
-    {% endif %}
     {% endfor %}
 </table>
 {% endblock %}

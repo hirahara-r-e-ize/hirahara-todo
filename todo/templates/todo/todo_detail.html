@@ -11,6 +11,13 @@
     {% if user.is_authenticated %}
         <div class="submit">    
             <button onclick="location.href='{% url 'todo_edit' pk=todo.pk %}'">編集</button>
+            {% if todo.complete == True %}
+                <button onclick="location.href='{% url 'todo_complete' pk=todo.pk %}'">完了</button>
+            {% else %}
+                完了済み
+            {% endif %}
+            <button onclick="location.href='{% url 'todo_delete' pk=todo.pk %}'">削除</button>
         </div>
+
     {% endif %}
 {% endblock %}
